@@ -1,4 +1,4 @@
-# generador-tabla-binario-gary
+# generador-tabla-binario-gray
 Programa que crea una matriz con todas las combinaciones de hasta 6 variables. en binario natural o codigo gray.
 
 El archivo "Tabla Binario Gray V0_1.txt" ha sido escrito en TI-BASIC compatible con calculadoras TI-83/84.
