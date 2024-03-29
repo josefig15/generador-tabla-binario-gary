@@ -1,0 +1,89 @@
+// PROGRAMA GENERADOR TABLA BINARIO
+
+// *** VARIABLES GLOBALES ***
+// Q 	Numero de Variables 
+
+// Incognitas de la expresiones logicas.
+//		A,B,C,D,E,F (6 Variables Maximo) 
+
+// Resultados de Expresiones	
+//		W,X,Y,Z (4 Variables)
+
+// *** VARIABLES LOCALES ***
+
+// [A]	Matriz A.
+//	Numero FIlas 	= Numero de Combinaciones en BINARIO.
+//	Numero Columnas	= NUmero de Variables.
+
+// J	Contador	Desplazamiento Filas 	Matriz A.
+// I	Contador	Desplazamiento Columnas Matriz A.
+
+// Q Numero de Variables 
+//		A,B,C,D,E,F (6 Variables Maximo) 
+
+// U Indicador de Escrituta Bit Celda Matriz A.
+//		U = 0 Escribe Cero  
+//		U = 1 Escribe Uno 
+
+// P Contador	Numero de Bits en alto. valor inicial depende tipo de tabla.
+
+// T Dato		Numero Maximo de Bits en alto en funcion de la columna.
+
+// VALIDACION DE DATOS
+: Disp "NUM VAR"
+: Input Q
+: If Q < 2 OR Q > 6
+: Then
+	: Disp "NUM VAR 2-6"
+	: Stop
+: End
+// CREACION MATRIZ A
+: { 2^Q , Q + 1 } -> Dim([A])
+: Fill(0,[A])
+
+//SELECCION TIPO DE TABLA
+: Disp "1)BIN"
+: Disp "2)GRAY"
+: Input O						// Variable de opcion de operacion.
+
+//PROCESO PRINCIPAL
+: For( I , 1 , Q )				// Columnas Matriz A.(Izquierda a Derecha)
+	
+	: 0 -> U					// Indicador escritura Bit, inicia escribiendo 0
+	
+	: If O == 1					// Opcion tabla Binario
+	: Then
+		: 0 -> P					// Limpia Contador numero de bits
+		: 2^( Q - I )-> T			// Numero Maximo de Bits en alto de la columna.
+	: Else						// Opcion tabla Gary
+		: 2 ^ (Q - I ) -> P			// Valor Inicial Contador numero de bits (Adelanto)
+		: 2 ^ (Q - I + 1)-> T		// Numero Maximo de Bits medio periodo de la columna. 
+	: End
+	
+	
+	: For( J , 1 , 2^Q ) 		// Filas Matriz A (Descendente)
+	
+		: If I == 1				// Cuando es la primera Columna
+			: J-1 -> [A](J,Q+1)	// Se escrbe el numero de fila en la ultima columna
+		
+		: P + 1 -> P			// Incrementa Contador Bits recorridos
+		
+		: If U					
+			:1 ->[A](J,I)
+		
+		// Proceso cambio de escritura bit
+		: If P == T				// Cuando contador de bits igual al numero maximo de bits 
+		: Then
+			: 0 -> P			// Reinicia contador de Bits
+			
+			: If NOT(U)			// Cuando U = 0
+			: Then
+				: 1 -> U		// Invierte el Cero en Uno.
+			: Else
+				: 0 -> U		// Invierte el Uno en Cero.
+			: End
+		: End
+
+	: End						
+: End
+

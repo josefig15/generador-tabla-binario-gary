@@ -1,0 +1,52 @@
+ALGORITMO GENERADOR TABLA BINARIO-GRAY
+
+1) Crear Matria A y Llenarla de ceros. En esta Matriz se guardan todos los Numeros de la tabla.
+	- El nuemro de Filas    es Igual al Numero de Combinaciones ( 2^Q ).
+	- El numero de Columnas es Igual al Numero de Vaviables (Q).
+	- El numero Maximo de Variables es 6.
+	
+2) Dentro de Un Bucle For se Recorren las Columnas Matriz A (Contador I de 1 Hasta Q).
+	
+	2.1) La variable de Escritura estado Alto (U) se asigna el valor Inicial de 0.
+	
+	2.2) Se calcula el valor Inicial de Contador de Bits (P) de La columna (Acumulador que cuenta Numero de Bits en 1)
+		- Para Tabla Binario:
+				Valor Inicial Es P = 0
+		
+		- Para Tabla Gray:
+				Valor Inicial Es P = 2 ^ ( Q - I )	
+				
+	2.3) Se calcula el Tiempo en alto (T) de La columna (Numero de Bits en 1)
+		- Para Tabla Binario:
+				Tiempo en Alto 	T = 2 ^ (Q - I)	
+				
+		- Para Tabla Gray:
+				Teimpo en Alto 	T = 2 ^ (Q - I + 1)		
+	
+	2.4) Dentro de Otro Bucle For se recorre las Filas de La columna de Matriz A (Contador J de 1 Hasta 2^Q)
+		
+		2.4.1) Incrementa el Contador de Bits P. 
+				- Cuenta el numero de filas que recorre en Matriz A.
+		
+		2.4.2) Pregunta Si el Indicador de Estado Alto (U) Es 1 
+				
+				- Si U es Igual A 1: Si Escribe 1 en el elemento de la MatrizA(I,J). 
+			
+				- Si U es Igual A 0: No Escribe 1 en el elemento de la MatrizA(I,J). 
+		
+		2.4.3) Pregunta Si el Contador de Bits (P) ah Alcanzado el mismo Valor que El Tiempo en alto (T).
+			
+				Si P = T:
+				
+				- Reinicia Contador de Bits (P).
+				
+				- Presgunta Si Indicador Escritura estado Alto (U) Vale 1
+					
+					Si U = 0
+						- Cambia el valor de Escritura estado Alto (U) a 0 
+					Si No
+						- Cambia el valor de Escritura estado Alto (U) a 1
+	
+		2.4.4) Regresar a Punto 2.4 Hasta Contador J llegue hasta ultima FIla.
+		
+	2.5) Regresar a Punto 2 Hasta Contador I llegue hasta ultima Columna.

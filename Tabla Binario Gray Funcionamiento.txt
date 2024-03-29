@@ -1,0 +1,142 @@
+GENERADOR TABLA GRAY ALGORITMO
+
+Dimensiones Matriz A:
+	matriz A numero de filas = Numero de combinaciones en Binario.
+	matriz A numero de Columnas = Numero de variables.
+
+* Los Valores de los elementos pueden almacenarce en seis diferentes variables.
+	A , B , C , D , E y F
+* Los pesos de las columnas son iguales al numero de bits en estado alto o bajo.(Medio Periodo)
+
+*************************************************************************************************************************************************************************************************************************************************
+Ejemplo Tabla Gary para Cuatro variables:
+	
+	Numero de Columnas/Variables 	Q = 4
+	Numero de filas/Combinaciones	2 ^ Q = 16
+	
+	
+	1	2	3	4	Columnas 	I
+	
+	8	4	2	1	Peso Columna Binario Natural		
+	
+	4-0=4	4-1=3	4-2=2	4-3=1	Exponente    	Q - I + 1 
+	2^4=16	2^3=8	2^2=4	2^1=2	medio perido 	T = 2 ^ (Q - I + 1)	
+	
+	4-1=3	4-2=2	4-3=1	4-4=0	Exponente	Q - I
+	2^3=8	2^2=4	2^1=2	2^0=1	Contador Bits	P = 2 ^ ( Q - I )	Valor Inicial
+-----------------------------------------------------------------------------------------	
+DEC	A	B 	C	D		Variables
+
+00	0	0	0	0
+				_
+01	0	0	0	1
+			---------
+02	0	0	1	1
+	
+03	0	0	1	0	
+		-----------------
+04	0	1	1	0
+			
+05	0	1	1	1
+		
+06	0	1	0	1
+		
+07	0	1	0	0	
+	-------------------------	
+08	1	1	0	0
+
+09	1	1	0	1
+
+10	1	1	1	1
+
+11	1	1	1	0		
+
+12	1	0	1	0	
+
+13	1	0	1	1	
+
+14	1	0	0	1	
+
+15	1	0	0	0	
+
+
+DIAGRAMA DE TIEMPO TABLA GRAY PARA 3 VARIABLES
+	
+										REF
+t	.	-4	.	-3	.	-2	.	-1	.	0	.	1	.	2	.	3	.	4	.	5	.	6	.	7	.	ADELANTO	TIEMPO EN ALTO
+	
+DEC	.	.	.	.	.	.	.	.	.	00	.	01	.	02	.	03	.	04	.	05	.	06	.	07	.
+								_ _ _ _ _ _ _ _	_ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - ┐ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - ┐ _ _ _ _
+C	.	.	.	.	.	.	.	0 	. 	0 	.	1 	.	1	.	0 	. 	0 	. 	1	. 	1	.	0	.	2^0 = 1		2^1 = 2
+						_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ┐ _ _ _ _ _ _ _ _ _ _ _ _
+B	.	.	.	.	.	0	.	0 	. 	0 	.	0 	.	1 	.	1	. 	1	. 	1 	. 	0	.	0	.	2^1 = 2		2^2 = 4
+		_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+A	.	0	.	0	.	0	.	0 	. 	0 	.	0 	.	0 	.	0 	. 	1 	. 	1 	. 	1	.	1	.	2^2 = 4		2^3 = 8
+
+
+ - El Valor inicial del contador de bits (P) es igual al valor en binario natural de la columna.		
+ - El Tiempo en alto (T) esta un numero adelante del valor en binario natural de la columna.
+ - El contador de bits (P) reinicia cuando alcanza el mismo valor del tiempo en alto (T).
+ 
+*************************************************************************************************************************************************************************************************************************************************		
+
+Ejemplo Tabla Binario para Cuatro variables:
+	
+	Numero de Columnas/Variables 	Q = 4
+	Numero de filas/Combinaciones	2 ^ Q = 16
+	
+	1	2	3	4	Columnas 	I
+	
+	4-1=3	4-2=2	4-3=1	4-4=0	Exponente    	Q - I 
+	2^3=8	2^2=4	2^1=2	2^0=1	Tiempo en Alto 	T = 2 ^ (Q - I )	
+	
+	0	0	0	0	Contador Bits	P = 0		Valor Inicial
+-----------------------------------------------------------------------------------------	
+DEC	A	B 	C	D	Variables
+
+00	0	0	0	0
+				
+01	0	0	0	1
+				-
+02	0	0	1	0
+	
+03	0	0	1	1	
+			---------
+04	0	1	0	0
+			
+05	0	1	0	1
+					
+06	0	1	1	0
+		
+07	0	1	1	1	
+		-----------------	
+08	1	0	0	0
+
+09	1	0	0	1
+
+10	1	0	1	0
+
+11	1	0	1	1		
+
+12	1	1	0	0	
+
+13	1	1	0	1	
+
+14	1	1	1	0	
+
+15	1	1	1	1
+	-------------------------	
+
+
+DIAGRAMA DE TIEMPO TABLA BINARIO PARA 3 VARIABLES
+	
+	REF
+t	0	.	1	.	2	.	3	.	4	.	5	.	6	.	7	.	ADELANTO	TIEMPO EN ALTO
+	
+DEC	00	.	01	.	02	.	03	.	04	.	05	.	06	.	07	.
+	_ _ _ _ _ _ _ _ ┌ - - - - - - - ┐ _ _ _ _ _ _ _ ┌ - - - - - - - ┐ _ _ _ _ _ _ _ ┌ - - - - - - - ┐ _ _ _ _ _ _ _ ┌ - - - -
+C	0 	.	1 	.	0	.	1 	. 	0 	. 	1	. 	0	.	1	.	0		2^1 = 2
+	_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - ┐ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - -
+B	0 	.	0 	.	1 	.	1	. 	0	. 	0 	. 	1	.	1	.	0		2^2 = 4
+	_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ┌ - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+A	0 	.	0 	.	0 	.	0 	. 	1 	. 	1 	. 	1	.	1	.	0		2^3 = 8
