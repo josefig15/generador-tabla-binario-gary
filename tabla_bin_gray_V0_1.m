@@ -6,6 +6,7 @@
   Q = ans;
   if Q > 6
     disp("Numero MaIimo es 6 Varibles!")
+    return
   endif
   
   % Creacion tabla
