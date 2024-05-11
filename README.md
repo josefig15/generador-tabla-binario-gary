@@ -1,6 +1,6 @@
 # generador-tabla-binario-gray
 Programa que crea una matriz con todas las combinaciones de hasta 6 variables. en binario natural o codigo gray.
-El contenido de la Matriz puede usarse para evaluar expresiones logicas asignando los valores de cada elemento de la fila de la matriz en una variable cada una. 
+El contenido de la Matriz puede usarse para evaluar expresiones logicas asignando los valores de cada elemento de la fila de la matriz en una variable independiente.
 
 El archivo "Tabla Binario Gray V0_1.txt" ha sido escrito en TI-BASIC compatible con calculadoras TI-83/84.
 
